@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { MenuItem, FormControl, Select } from "@material-ui/core";
-import { Pie } from "react-chartjs-2";
+// import { Pie } from "react-chartjs-2";
 import "./App.css";
+import Mongochart from "./components/Mongochart";
+import Timeseries from "./components/Timeseries";
+import Linechart from "./components/Linechart";
 
 function App() {
   const [items, setItems] = useState([]);
@@ -67,23 +70,6 @@ function App() {
     }
   };
 
-  // useEffect(() => {
-  //   const fetchItems1 = async () => {
-  //     const result = await axios("http://localhost:5000/site");
-  //     console.log(result.data);
-  //     const sites = result.data.map((site) => ({
-  //       site_name: site.sites.map((data) => {
-  //         return data.name;
-  //       }),
-  //       // count: device.count,
-  //     }));
-  //     console.log(sites);
-  //     setDropSites(sites);
-  //   };
-
-  //   fetchItems1();
-  // }, []);
-
   return (
     <div className="App">
       <h1>Hello</h1>
@@ -95,7 +81,10 @@ function App() {
           ))}
         </Select>
       </FormControl>
-      <Pie data={chartData} />
+      {/* <Pie data={chartData} /> */}
+      <Mongochart />
+      <Timeseries />
+      <Linechart />
     </div>
   );
 }
