@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
+import Footer from './Footer'
+import Header from './Header'
+import {BrowserRouter as Router,Switch,Route,Redirect} from "react-router-dom"
 import axios from "axios";
 import { MenuItem, FormControl, Select } from "@material-ui/core";
-// import { Pie } from "react-chartjs-2";
+import { Pie } from "react-chartjs-2";
 import "./App.css";
-import Mongochart from "./components/Mongochart";
-import Timeseries from "./components/Timeseries";
-import Linechart from "./components/Linechart";
+import Mongochart from "./components/Mongochart/Mongochart";
+import Timeseries from "./components/Timeseries/Timeseries";
+import Linechart from "./components/Linechart/Linechart";
 
 function App() {
   const [items, setItems] = useState([]);
@@ -57,11 +60,11 @@ function App() {
       setChartData({
         labels: ["Safe", "Unsafe"],
         datasets: [
-          {
+          { 
             label: "Pie chart",
             data: [pieSafe, pieUnsafe],
-            backgroundColor: ["#B21F00", "#C9DE00"],
-            hoverBackgroundColor: ["#501800", "#4B5000"],
+            backgroundColor: ["#C9DE00", "#B21F00"],
+            hoverBackgroundColor: ["#4B5000", "#501800"],
             borderWidth: 4,
           },
         ],
@@ -72,20 +75,37 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Hello</h1>
-      <FormControl className="app_dropdown">
-        <Select variant="outlined" value={select} onChange={onSelectChange}>
-          <MenuItem value="Select Device">Select Device</MenuItem>
-          {items.map((item) => (
-            <MenuItem value={item.device}>{item.device}</MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-      {/* <Pie data={chartData} /> */}
-      <Mongochart />
-      <Timeseries />
-      <Linechart />
-    </div>
+      <Router>
+        <Header/>
+      <div className="dropdown-container">
+        <FormControl className="app_dropdown">
+          <Select variant="outlined" value={select} onChange={onSelectChange}>
+            <MenuItem value="Select Device"><label className = "lol">Select Device</label></MenuItem>
+            {items.map((item) => (
+              <MenuItem value={item.device}>{item.device}</MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+        
+        
+          </div>
+          
+         <div className="pie-container"><Pie  data={chartData} width={3}  height= {3} options={{ responsive:true, maintainAspectRatio: true }}/></div>       
+         <div className="term">
+          <div className="mongochart">
+            <Mongochart />  
+          </div>
+          <div className="timeseries">
+            <Timeseries />
+            </div>
+          <div className="linechart">
+            <Linechart />
+          </div>
+          </div>
+          <Footer/>
+        </Router>
+        </div>
+    
   );
 }
 

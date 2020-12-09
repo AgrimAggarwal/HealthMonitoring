@@ -1,6 +1,7 @@
 import React, { useRef, useCallback } from "react";
 import ChartsEmbedSDK from "@mongodb-js/charts-embed-dom";
-
+import "./Linechart.modules.css";
+import { Button } from "@material-ui/core";
 const Linechart = () => {
   const refChart = useRef(null);
 
@@ -10,7 +11,7 @@ const Linechart = () => {
 
   const chart = sdk.createChart({
     chartId: "6049b25d-55f6-41e1-a4fb-06b2e194d003",
-    width: 640,
+    width: 570,
     height: 400,
     theme: "dark",
   });
@@ -38,8 +39,9 @@ const Linechart = () => {
   );
   const chart2 = sdk.createChart({
     chartId: "7270b96a-df98-4bd5-a426-94d18df4968b",
-    width: 640,
+    width: 570,
     height: 400,
+    display: "inline-block",
     theme: "dark",
   });
 
@@ -66,7 +68,7 @@ const Linechart = () => {
   );
   const chart3 = sdk.createChart({
     chartId: "cff7f336-f6c7-484f-9f47-2ae2ec47efc1",
-    width: 640,
+    width: 570,
     height: 400,
     theme: "dark",
   });
@@ -96,19 +98,27 @@ const Linechart = () => {
   const RefreshButton = (e) => {
     chart.refresh();
   };
+  const RefreshButton2 = (e) => {
+    chart2.refresh();
+  };
+  const RefreshButton3 = (e) => {
+    chart3.refresh();
+  };
   return (
-    <div>
+    <div class="container">
       <div className="charts">
         <div id="barChart" ref={setRefChart}></div>
-        <button onClick={RefreshButton}>Refresh</button>
+        <Button onClick={RefreshButton}>Refresh</Button>
       </div>
       <div className="charts2">
         <div id="barChart2" ref={setRefChart2}></div>
-        <button onClick={RefreshButton}>Refresh</button>
+        <Button onClick={RefreshButton2}>Refresh</Button>
       </div>
       <div className="charts3">
         <div id="barChart3" ref={setRefChart3}></div>
-        <button onClick={RefreshButton}>Refresh</button>
+        <Button onClick={RefreshButton3} variant="outlined">
+          Refresh
+        </Button>
       </div>
     </div>
   );

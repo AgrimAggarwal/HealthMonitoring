@@ -1,6 +1,7 @@
 import React, { useRef, useCallback } from "react";
 import ChartsEmbedSDK from "@mongodb-js/charts-embed-dom";
-
+import "./Timeseries.modules.css";
+import { Button } from "@material-ui/core";
 const Timeseries = () => {
   const refChart = useRef(null);
 
@@ -10,8 +11,12 @@ const Timeseries = () => {
 
   const chart = sdk.createChart({
     chartId: "6407c021-5b50-45b7-b59c-36d3739e26a9",
-    width: 640,
+    width: 1800,
     height: 400,
+    display: "flex",
+    position: "relative",
+    margin: "auto",
+
     theme: "dark",
   });
 
@@ -41,10 +46,10 @@ const Timeseries = () => {
     chart.refresh();
   };
   return (
-    <div>
+    <div className="container">
       <div className="charts">
         <div id="barChart" ref={setRefChart}></div>
-        <button onClick={RefreshButton}>Refresh</button>
+        <Button onClick={RefreshButton}>Refresh</Button>
       </div>
     </div>
   );

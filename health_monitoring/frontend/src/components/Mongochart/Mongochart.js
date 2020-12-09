@@ -2,7 +2,8 @@ import React, { useRef, useCallback } from "react";
 import ChartsEmbedSDK from "@mongodb-js/charts-embed-dom";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
-
+import "./Mongochart.modules.css";
+import { Button } from "@material-ui/core";
 const Mongochart = ({ deviceid }) => {
   const refChart = useRef(null);
 
@@ -12,8 +13,9 @@ const Mongochart = ({ deviceid }) => {
 
   const chart = sdk.createChart({
     chartId: "171b335f-ce2e-4b9f-aaec-f5f56a0aee9b",
-    width: 640,
+    width: 570,
     height: 400,
+    
     theme: "dark",
     // filter: { DeviceID: { deviceid } },
   });
@@ -42,8 +44,9 @@ const Mongochart = ({ deviceid }) => {
 
   const chart2 = sdk.createChart({
     chartId: "cfe8c562-dc59-44bd-8df4-56204590fa11",
-    width: 640,
+    width: 570,
     height: 400,
+    display: "inline-block",
     theme: "dark",
     // filter: { DeviceID: { deviceid } },
   });
@@ -72,8 +75,9 @@ const Mongochart = ({ deviceid }) => {
 
   const chart3 = sdk.createChart({
     chartId: "4e6eb2bb-2e92-454b-bb18-bf03979a3b4e",
-    width: 640,
+    width: 570,
     height: 400,
+    
     theme: "dark",
     // filter: { DeviceID: { deviceid } },
   });
@@ -102,6 +106,12 @@ const Mongochart = ({ deviceid }) => {
   const RefreshButton = (e) => {
     chart.refresh();
   };
+  const RefreshButton2 = (e) => {
+    chart2.refresh();
+  };
+  const RefreshButton3 = (e) => {
+    chart3.refresh();
+  };
 
   const datachange = (e) => {
     const date1 = new Date(e.target.value);
@@ -117,26 +127,38 @@ const Mongochart = ({ deviceid }) => {
   };
 
   return (
-    <div>
-      <div className="charts">
-        <div id="Chart1" ref={setRefChart}></div>
-        <button onClick={RefreshButton}>Refresh</button>
-        <label>
-          from:<input type="date" onChange={datachange}></input>
-        </label>
+    
+      <div className="container">
+        
 
-        <div id="Chart2" ref={setRefChart2}></div>
-        <button onClick={RefreshButton}>Refresh</button>
-        <label>
-          from:<input type="date" onChange={datachange2}></input>
-        </label>
-        <div id="Chart3" ref={setRefChart3}></div>
-        <button onClick={RefreshButton}>Refresh</button>
-        <label>
-          from:<input type="date" onChange={datachange3}></input>
-        </label>
+        <div className="chart">
+          <div id="Chart1" ref={setRefChart}></div>
+          <Button onClick={RefreshButton}>Refresh</Button>
+          <label>
+            from:<input type="date" onChange={datachange}></input>
+          </label>
+          </div>
+
+          <div className="charts2">
+          <div id="Chart2" ref={setRefChart2}></div>
+          <Button onClick={RefreshButton2}>Refresh</Button>
+          <label>
+            from:  <input type="date" onChange={datachange2}></input>
+          </label>
+          
+         
+          </div>
+
+          <div className="charts3">
+          <div id="Chart3" ref={setRefChart3}></div>
+          <Button onClick={RefreshButton3}>Refresh</Button>
+          <label>
+            from:<input type="date" onChange={datachange3}></input>
+          </label>
+          </div>
+        
       </div>
-    </div>
+    
   );
 };
 
