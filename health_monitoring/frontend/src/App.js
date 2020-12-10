@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Footer from './Footer'
 import Header from './Header'
-import {BrowserRouter as Router,Switch,Route,Redirect} from "react-router-dom"
+import {BrowserRouter as Router} from "react-router-dom"
 import axios from "axios";
 import { MenuItem, FormControl, Select } from "@material-ui/core";
 import { Pie } from "react-chartjs-2";

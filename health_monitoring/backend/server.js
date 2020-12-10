@@ -20,7 +20,7 @@ const siteroute = require("./routes/site");
 app.use("/site", siteroute);
 
 const bullshit = require("./routes/aggregation");
-app.use("/bs", bullshit);
+app.use("/aggregation", bullshit);
 
 const uri = process.env.ATLAS_URI;
 mongoose.connect(uri, {
